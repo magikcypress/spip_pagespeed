@@ -14,12 +14,24 @@ if (!defined('_ECRIRE_INC_VERSION')) {
 	return;
 }
 
+/**
+ * Traiter les données pour les afficher dans un tableau
+ *
+ * @param string $href
+ * @return array resultat
+ */
 function attrape_pagespeed($href) {
 
 	$result = pagespeed_attrape_google($href);
 	return $result;
 }
 
+/**
+ * Traiter les données plus profonde
+ *
+ * @param string $texte
+ * @return array resultat
+ */
 function pagespeed_tableau_pagestats($texte) {
 
 	if (isset($texte)) {
