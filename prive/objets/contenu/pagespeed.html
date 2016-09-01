@@ -1,0 +1,44 @@
+[(#ENV{url_site_spip}|oui)
+	#SET{json,#EVAL{_DIR_VAR}|concat{pagespeed/pagespeed.json}}
+]
+[(#ENV{url_site_spip}|non)
+	#SET{json,#EVAL{_DIR_VAR}|concat{pagespeed/pagespeed_#ENV{id_syndic}.json}}
+]
+<B_liste_pagespeed>
+	<tr>
+		<th scope='col'><:pagespeed:form_date_fichier:></th>
+		<td>[(#VAL{'Y-m-d H:i:s'}|date{[(#GET{json}|filemtime)]}|affdate_heure)]</td>
+	</tr>
+<BOUCLE_liste_pagespeed(DATA){si #GET{json}|file_exists}{source json, #GET{json}}>
+	<tr>
+		[(#CLE|=={pagestats}|non)
+			[(#CLE|=={score}|oui)
+				[(#SET{score, #VALEUR})]
+				[(#SET{class, pagespeed_gauge})]
+				<td colspan="2">				
+				<div class="#GET{class}" data-width="510" data-height="140" data-thickness="22" data-value="#GET{score}" data-start-angle="0" data-end-angle="360" style="position: relative;">
+					<div class="arc-gauge-text">
+						<span class="value">#GET{score}</span>
+						<p class="small"><:pagespeed:form_score:></p>
+					</div>
+				</div>
+				<INCLURE{fond=javascript/gauge_exec.js, variable=#ARRAY{score, #GET{score}, class, #GET{class}}}>
+				</td>
+			]
+			[(#CLE|=={score}|non)
+				<th scope='col'>[(#VAL{pagespeed:form_}|concat{#CLE}|_T)]</th>
+				<td>#VALEUR</td>
+			]
+		]	
+	</tr>
+		
+	<BOUCLE_condition(CONDITION){si #CLE|=={pagestats}}>
+		<BOUCLE_pagespeed_pagesstatus(DATA){source table, #VALEUR|pagespeed_tableau_pagestats}>
+		<tr>
+			<th>[(#VAL{pagespeed:form_}|concat{#CLE}|_T)]</th>
+			<td>[(#VALEUR)]</td>
+		</tr>
+		</BOUCLE_pagespeed_pagesstatus>
+	</BOUCLE_condition>
+</BOUCLE_liste_pagespeed>
+</B_liste_pagespeed>

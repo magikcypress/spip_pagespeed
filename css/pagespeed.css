@@ -1,0 +1,13 @@
+div.arc-gauge-text {
+	font-size: 25px;
+	font-weight: 100;
+	position: absolute;
+	width: 510px;
+	top: 25%;
+	text-align: center;
+	line-height: 1em;
+}
+.boutons_droite {
+    margin: 20px 0;
+    text-align: right;
+}

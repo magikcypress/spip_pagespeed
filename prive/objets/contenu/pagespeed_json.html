@@ -1,0 +1,6 @@
+    <dl>
+    <BOUCLE_json(DATA){source json, https://www.googleapis.com/pagespeedonline/v2/runPagespeed?url=#ENV{url_site}}>
+    <dt>#CLE</dt>
+    <dd>[(#VALEUR|print)]</dd>
+    </BOUCLE_json>
+    </dl>

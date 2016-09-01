@@ -1,0 +1,35 @@
+<h1 class="grostitre"><:pagespeed:liste_score:></h1>
+
+<BOUCLE_total_site(SYNDIC){tout} />#SET{total,#TOTAL_BOUCLE}<//B_total_site>
+<B_site_pagespeed>
+<div class="liste-objets pagespeed">
+<table class='spip liste'>
+[<caption><strong class="caption">(#ENV*{titre, [(#GET{total}|singulier_ou_pluriel{info_1_site,info_nb_sites})]})</strong></caption>]
+    <thead>
+        <tr class='first_row'>
+            <th class='statut' scope='col'>#</th>
+            <th class='url_site' scope='col'><:pagespeed:form_url_site:></th>
+            <th class='date_ping' scope='col'><:pagespeed:form_score:></th>
+            <th class='latence' scope='col'><:pagespeed:form_date:></th>
+            <th class='id' scope='col'><:info_numero_abbreviation:></th>
+        </tr>
+    </thead>
+    <tbody>
+    <BOUCLE_site_pagespeed(SYNDIC){statut IN publie,prop}>
+        <tr class="[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]">
+            <td class='statut'>[(#STATUT_LOG|puce_statut{monitor,#ID_SYNDIC})]</td>
+            <td class='url_site principale'>                
+                <a href="[(#ID_SYNDIC|generer_url_entite{site})]"
+                    title="<:info_numero_abbreviation|attribut_html:> #ID_SYNDIC">#NOM_SITE</a> [<span class='visiter'>&#91;<a href='(#URL_SITE)'><:lien_visite_site:></a>&#93;</span>]</td>
+            <td class='score'>[(#SCORE_PAGESPEED)]</td>
+            <td class='date_pagespeed secondaire'>[(#DATE_PAGESPEED|date_relative)]</td>
+            <td class='id'>
+                <a href="[(#URL_ECRIRE{site_edit,id_syndic=#ID_SYNDIC})]">#ID_SYNDIC</a></td>
+        </tr>
+    </BOUCLE_site_pagespeed>
+    </tbody>
+</table>
+</div>
+</B_site_pagespeed>
+    <div class="liste-objets sites caption-wrap"><strong class="caption"><:pagespeed:aucun_score:></strong></div>
+<//B_site_pagespeed>

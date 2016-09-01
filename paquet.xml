@@ -1,0 +1,30 @@
+<paquet
+	prefix="pagespeed"
+	categorie="statistique"
+	version="1.1.0"
+	etat="dev"
+	compatibilite="[3.0.0;3.1.*]"
+	logo="prive/themes/spip/images/pagespeed-32.png"
+	documentation=""
+	schema="1.0"
+>
+
+	<nom>Page Speed</nom>
+	<!--Ce plugin permet de discuter avec l'API page speed de Google-->
+
+	<auteur>cyp</auteur>
+
+	<licence>GNU/GPL</licence>
+
+	<necessite nom="sites" />
+	<necessite nom="d3js" />
+
+	<pipeline nom="declarer_tables_objets_sql" inclure="base/pagespeed.php" />
+	<pipeline nom="d3js_plugins" inclure="pagespeed_pipelines.php" />
+	<pipeline nom="affiche_milieu" inclure="pagespeed_pipelines.php" />
+	<pipeline nom="header_prive_css" action="header_prive_css" inclure="pagespeed_pipelines.php" />
+	<pipeline nom="taches_generales_cron" inclure="pagespeed_pipelines.php" />
+	
+	<menu nom="pagespeed_score" titre="pagespeed:icone_pagespeed_score" parent="menu_edition" icone="images/pagespeed-16.png" action="liste_score" />
+
+</paquet>

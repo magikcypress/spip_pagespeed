@@ -1,0 +1,27 @@
+<div class="liste-objets sites pagespeed">
+
+<B_liste_pagespeed>
+<table class='spip liste'>
+<caption><strong class="caption"><:pagespeed:titre_pagespeed:></strong></caption>
+	<thead>
+		<tr>
+			<th colspan="2"><:pagespeed:form_resultat:></th>
+		</tr>
+	</thead>
+	<tbody>
+
+		<INCLURE{fond=prive/objets/contenu/pagespeed, env, url_site_spip=#URL_SITE_SPIP}>
+
+	</tbody>
+</table>
+
+</B_liste_pagespeed>[
+<div class="liste-objets sites caption-wrap"><strong class="caption">(#ENV*{sinon,''})</strong></div>
+]<//B_liste_pagespeed>
+</div>
+
+<div class="boutons_droite">
+	[(#BOUTON_ACTION{
+	<:pagespeed:form_recuperer_pagespeed:>, 
+	[(#URL_ACTION_AUTEUR{recuperer_pagespeed_identite_json, #URL_SITE_SPIP, [(#SELF|parametre_url{'var_mode', 'recalcul'})]})],ajax})]
+</div>

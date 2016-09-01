@@ -1,0 +1,28 @@
+<div class="liste-objets sites pagespeed">
+
+<B_site>
+<BOUCLE_site(SYNDIC){id_syndic}{statut IN prop,publie}>
+<table class='spip liste'>
+<caption><strong class="caption"><:pagespeed:titre_pagespeed:></strong></caption>
+	<thead>
+		<tr>
+			<th colspan="2"><:pagespeed:form_resultat:></th>
+		</tr>
+	</thead>
+	<tbody>
+
+		<INCLURE{fond=prive/objets/contenu/pagespeed, env}>
+
+	</tbody>
+</table>
+</BOUCLE_site>
+</B_site>[
+<div class="liste-objets sites caption-wrap"><strong class="caption">(#ENV*{sinon,''})</strong></div>
+]<//B_site>
+</div>
+
+<div class="boutons_droite">
+	[(#BOUTON_ACTION{
+	<:pagespeed:form_recuperer_pagespeed:>, 
+	[(#URL_ACTION_AUTEUR{recuperer_pagespeed_json, #ENV{id_syndic}, [(#SELF|parametre_url{'var_mode', 'recalcul'})]})],ajax})]
+</div>
